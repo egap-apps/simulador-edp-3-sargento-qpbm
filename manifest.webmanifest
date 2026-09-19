@@ -1,0 +1,25 @@
+{
+  "name": "Preparatório EDP — 3º Sargento QPBM",
+  "short_name": "EDP 3º Sgt",
+  "description": "Preparatório para o EDP com banco baseado nas quatro provas mais recentes do EAP para 3º Sargento QPBM.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#14181f",
+  "theme_color": "#ff6b00",
+  "lang": "pt-BR",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
