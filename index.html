@@ -6,14 +6,14 @@
 <meta name="theme-color" content="#ff6b00">
 <title>Preparatório EDP — 3º Sargento QPBM</title>
 <meta name="description" content="Preparatório EDP — 3º Sargento QPBM. Simulados, revisão e questões baseadas nas provas do EAP.">
-<link rel="canonical" href="https://elias-galliano.github.io/simulador-eap-3-sargento-qpbm/">
+<link rel="canonical" href="https://egap-apps.github.io/simulador-edp-3-sargento-qpbm/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Preparatório EDP">
 <meta property="og:title" content="Preparatório EDP — 3º Sargento QPBM">
 <meta property="og:description" content="Simulados, revisão e questões baseadas nas quatro provas mais recentes do EAP.">
-<meta property="og:url" content="https://elias-galliano.github.io/simulador-eap-3-sargento-qpbm/">
-<meta property="og:image" content="https://elias-galliano.github.io/simulador-eap-3-sargento-qpbm/assets/share-preview.png?v=38">
-<meta property="og:image:secure_url" content="https://elias-galliano.github.io/simulador-eap-3-sargento-qpbm/assets/share-preview.png?v=38">
+<meta property="og:url" content="https://egap-apps.github.io/simulador-edp-3-sargento-qpbm/">
+<meta property="og:image" content="https://egap-apps.github.io/simulador-edp-3-sargento-qpbm/assets/share-preview.png?v=310">
+<meta property="og:image:secure_url" content="https://egap-apps.github.io/simulador-edp-3-sargento-qpbm/assets/share-preview.png?v=310">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -21,7 +21,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Preparatório EDP — 3º Sargento QPBM">
 <meta name="twitter:description" content="Simulados, revisão e questões baseadas nas provas do EAP.">
-<meta name="twitter:image" content="https://elias-galliano.github.io/simulador-eap-3-sargento-qpbm/assets/share-preview.png?v=38">
+<meta name="twitter:image" content="https://egap-apps.github.io/simulador-edp-3-sargento-qpbm/assets/share-preview.png?v=310">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
@@ -562,8 +562,9 @@ function goHome(){clearInterval(timerInt);show('home');updateHome()}
 async function shareApp(){
   const title='Preparatório EDP — 3º Sargento QPBM';
   const text='Preparatório EDP — 3º Sargento QPBM\nSimulados, revisão e questões baseadas nas provas do EAP.\nAcesse pelo link abaixo.';
-  let url;
-  url='https://elias-galliano.github.io/simulador-eap-3-sargento-qpbm/?v=38'
+  const shareUrl=new URL('./',window.location.href);
+  shareUrl.search='?v=310';
+  const url=shareUrl.href;
   try{
     if(navigator.share){
       await navigator.share({title,text,url});
