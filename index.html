@@ -266,6 +266,7 @@ body.splash-lock{overflow:hidden}
       <button type="button" onclick="toggleMainMenu(false);showStats()"><span>📊</span><div><b>Desempenho detalhado</b><small>Estatísticas e histórico de simulados</small></div></button>
       <button type="button" onclick="toggleMainMenu(false);exportProgress()"><span>⬆️</span><div><b>Exportar progresso</b><small>Crie um backup deste aparelho</small></div></button>
       <button type="button" onclick="toggleMainMenu(false);document.getElementById('progressImportGlobal').click()"><span>⬇️</span><div><b>Importar progresso</b><small>Restaure um backup salvo</small></div></button>
+      <button type="button" onclick="toggleMainMenu(false);shareApp()"><span>📤</span><div><b>Compartilhar app</b><small>Envie o Preparatório EDP para seus companheiros</small></div></button>
       <button type="button" onclick="toggleMainMenu(false);openAbout()"><span>ℹ️</span><div><b>Sobre este material</b><small>Finalidade, atualização anual e aviso de conferência</small></div></button>
       <input id="progressImportGlobal" type="file" accept="application/json,.json" hidden onchange="importProgressFile(event)">
     </nav>
@@ -536,6 +537,33 @@ function openReviewPdf(){
   if(f&&(!f.src||f.src==='about:blank'))f.src='downloads/material-revisao-edp-3-sargento-qpbm.pdf#view=FitH';
 }
 function goHome(){clearInterval(timerInt);show('home');updateHome()}
+async function shareApp(){
+  const title='Preparatório EDP — 3º Sargento QPBM';
+  const text='Preparatório EDP — 3º Sargento QPBM\nSimulados, revisão e questões baseadas nas provas do EAP.\nAcesse pelo link abaixo.';
+  let url;
+  try{url=new URL('./',window.location.href).href}catch(e){url=window.location.href}
+  try{
+    if(navigator.share){
+      await navigator.share({title,text,url});
+      return;
+    }
+    const shareText=`${text}\n${url}`;
+    if(navigator.clipboard&&window.isSecureContext){
+      await navigator.clipboard.writeText(shareText);
+      alert('Link do app copiado. Agora é só enviar para seus companheiros.');
+      return;
+    }
+    const area=document.createElement('textarea');
+    area.value=shareText;area.setAttribute('readonly','');area.style.position='fixed';area.style.opacity='0';
+    document.body.appendChild(area);area.select();
+    const copied=document.execCommand('copy');document.body.removeChild(area);
+    if(copied)alert('Link do app copiado. Agora é só enviar para seus companheiros.');
+    else prompt('Copie o link do Preparatório EDP:',url);
+  }catch(err){
+    if(err&&err.name==='AbortError')return;
+    prompt('Compartilhe este link do Preparatório EDP:',url);
+  }
+}
 function exportProgress(){let blob=new Blob([JSON.stringify({version:2,exportedAt:new Date().toISOString(),progress,meta,fullSimDraft:loadFullSimDraft()},null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='progresso_edp_3_sargento_qpbm.json';a.click();URL.revokeObjectURL(a.href)}
 function resetProgress(){if(confirm('Zerar todo o histórico de acertos, erros, simulados, andamento salvo e marcações deste aparelho?')){progress={};meta={simulations:[]};localStorage.setItem(KEY,JSON.stringify(progress));localStorage.removeItem(FULL_SIM_DRAFT_KEY);saveMeta();updateHome()}}
 function escapeHtml(s){return String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}

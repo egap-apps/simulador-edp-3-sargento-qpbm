@@ -1,4 +1,4 @@
-const CACHE='edp-3sgt-v3-6';
+const CACHE='edp-3sgt-v3-7';
 const PRECACHE=['./','./index.html','./material-revisao.html','./manifest.webmanifest','./assets/divisa-sargento.png','./assets/bombeiro.png','./icons/icon-192.png','./icons/icon-512.png','./icons/apple-touch-icon.png'];
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(c=>c.addAll(PRECACHE)).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});
