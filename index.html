@@ -213,6 +213,11 @@ body.splash-lock{overflow:hidden}
 @media(max-width:480px){.app-splash{padding:24px 20px}.splash-rank{width:108px;height:108px;margin-bottom:21px}.splash-sub{font-size:.88rem}.splash-points{font-size:.68rem}}
 @media(prefers-reduced-motion:reduce){.splash-inner,.splash-rank{animation:none}.splash-loader i{animation:splashLoad 5s linear forwards}}
 
+
+/* V3.9 — correção da faixa do ciclo anual sob o cabeçalho */
+body:not(.internal-mode) .wrap{margin:0 auto!important;padding-top:14px!important}
+body:not(.internal-mode) .cycle-strip{position:relative;z-index:6;margin-top:0!important}
+@media(max-width:760px){body:not(.internal-mode) .wrap{margin:0 auto!important;padding-top:10px!important}}
 </style>
 </head>
 <body class="splash-lock">
